@@ -186,9 +186,8 @@ def birthdays(book):
     return "\n".join(f"{i['name']} → {i['congratulation_date']}" for i in upcoming)
 
 
-
-
-if __name__ == "__main__":
+def main():
+    print("Welcome!")
     book = AddressBook()
 
     print("=== ДОДАЄМО КОНТАКТИ ===")
@@ -209,3 +208,9 @@ if __name__ == "__main__":
 
     print("\n=== НАЙБЛИЖЧІ ДНІ НАРОДЖЕННЯ ===")
     print(birthdays(book))
+
+if __name__ == "__main__":
+    main()
+        
+
+
