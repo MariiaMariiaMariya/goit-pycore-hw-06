@@ -185,10 +185,53 @@ def birthdays(book):
         return "No birthdays next week."
     return "\n".join(f"{i['name']} → {i['congratulation_date']}" for i in upcoming)
 
+def parse_input(user_input: str):
+    parts = user_input.strip().split()
+    command = parts[0].lower()
+    args = parts[1:]
+    return command, args
 
 def main():
-    print("Welcome!")
     book = AddressBook()
+    print("Welcome to the assistant bot!")
+
+    try:
+        while True:
+            user_input = input("Enter a command: ")
+            command, *args = parse_input(user_input)
+
+            if command in ["close", "exit"]:
+                print("Good bye!")
+                break
+
+            elif command == "hello":
+                print("How can I help you?")
+
+            elif command == "add":
+                print(add_contact(args, book))
+
+            elif command == "change":
+                print(change_contact(args, book))
+
+            elif command == "phone":
+                print(show_phone(args, book))
+
+            elif command == "all":
+                print(show_all(book))
+
+            elif command == "add-birthday":
+                print(add_birthday(args, book))
+
+            elif command == "show-birthday":
+                print(show_birthday(args, book))
+
+            elif command == "birthdays":
+                print(birthdays(book))
+
+            else:
+                print("Invalid command.")
+    except KeyboardInterrupt:
+        print("\nBot stopped.")
 
     print("=== ДОДАЄМО КОНТАКТИ ===")
     print(add_contact(["John", "1234567890"], book))
